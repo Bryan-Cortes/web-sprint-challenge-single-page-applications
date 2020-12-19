@@ -1,19 +1,30 @@
 import React from 'react'
 import ConfirmationPage from './ConfirmationPage';
+import { useHistory } from "react-router-dom";
 
-export default function FormPage({values, disabled, errors,}) {
+export default function FormPage({values, disabled, errors, change, submit}) {
+
   return (
     <div>
 
       <h2>Build Your Own Pizza</h2>
-      <form>
+      <form onSubmit={submit}>
+
+        <label>
+          <input
+            type='text'
+            name="name"
+            value={values.name}
+            onChange={change}
+          />
+        </label>
         <label>Choice of Size:
-          <select>
-            <option> - Select an option -</option>
-            <option>Small Pizza: 8-10 inches </option>
-            <option>Medium Pizza: 12 inches  </option>
-            <option>Large Pizza: 14 inch </option>
-            <option>Extra-large Pizza: 16-18 inch </option>
+          <select name='size' value={values.size} onChange={change}>
+            <option value=''> - Select an option -</option>
+            <option value='small'>Small Pizza: 8-10 inches </option>
+            <option value='medium'>Medium Pizza: 12 inches  </option>
+            <option value='Large'>Large Pizza: 14 inch </option>
+            <option value='extraLarge'> Extra-large Pizza: 16-18 inch </option>
           </select>
         </label>
 
@@ -22,6 +33,7 @@ export default function FormPage({values, disabled, errors,}) {
           <input
             type='radio'
             name='sauce'
+            onChange={change}
             value='original'
             checked={values.sauce === 'original'}
           />
@@ -31,6 +43,7 @@ export default function FormPage({values, disabled, errors,}) {
           <input
             type='radio'
             name='sauce'
+            onChange={change}
             value='ranch'
             checked={values.sauce === 'ranch'}
           />
@@ -40,6 +53,7 @@ export default function FormPage({values, disabled, errors,}) {
           <input
             type='radio'
             name='sauce'
+            onChange={change}
             value='bbq'
             checked={values.sauce === 'bbq'}
           />
@@ -49,10 +63,23 @@ export default function FormPage({values, disabled, errors,}) {
           <input
             type='radio'
             name='sauce'
+            onChange={change}
             value='alfredo'
             checked={values.sauce === 'alfredo'}
           />
+        </label> <br/>
+
+        <label>
+          Special Instructions:
+          <input
+          type='text'
+          onChange={change}
+          name='instructions'
+          value={values.instructions}
+          />
         </label>
+
+        
 
         <h3>Add Toppings</h3>
         <p>Choose up to 10.</p>
@@ -61,6 +88,7 @@ export default function FormPage({values, disabled, errors,}) {
           Pepperoni
           <input
             type="checkbox"
+            onChange={change}
             name="pepperoni"
             checked={values.toppings.pepperoni}
           />
@@ -70,6 +98,7 @@ export default function FormPage({values, disabled, errors,}) {
           Sausage
           <input
             type="checkbox"
+            onChange={change}
             name="sausage"
             checked={values.toppings.sausage}
           />
@@ -79,6 +108,7 @@ export default function FormPage({values, disabled, errors,}) {
         Canadian Bacon
           <input
             type="checkbox"
+            onChange={change}
             name="canadianBacon"
             checked={values.toppings.canadianBacon}
           />
@@ -88,6 +118,7 @@ export default function FormPage({values, disabled, errors,}) {
         Spicy Sausage
           <input
             type="checkbox"
+            onChange={change}
             name="spicySausage"
             checked={values.toppings.spicySausage}
           />
@@ -97,6 +128,7 @@ export default function FormPage({values, disabled, errors,}) {
         Grilled Chicken
           <input
             type="checkbox"
+            onChange={change}
             name="grilledChicken"
             checked={values.toppings.grilledChicken}
           />
@@ -106,6 +138,7 @@ export default function FormPage({values, disabled, errors,}) {
         Onions
           <input
             type="checkbox"
+            onChange={change}
             name="onions"
             checked={values.toppings.onions}
           />
@@ -115,6 +148,7 @@ export default function FormPage({values, disabled, errors,}) {
         Green Peppers
           <input
             type="checkbox"
+            onChange={change}
             name="greenPeppers"
             checked={values.toppings.greenPeppers}
           />
@@ -124,6 +158,7 @@ export default function FormPage({values, disabled, errors,}) {
         Diced Tomates
           <input
             type="checkbox"
+            onChange={change}
             name="dicedTomates"
             checked={values.toppings.dicedTomates}
           />
@@ -133,6 +168,7 @@ export default function FormPage({values, disabled, errors,}) {
         Black Olives
           <input
             type="checkbox"
+            onChange={change}
             name="blackOlives"
             checked={values.toppings.blackOlives}
           />
@@ -142,6 +178,7 @@ export default function FormPage({values, disabled, errors,}) {
         Roasted Garlic
           <input
             type="checkbox"
+            onChange={change}
             name="roastedGarlic"
             checked={values.toppings.roastedGarlic}
           />
@@ -160,6 +197,7 @@ export default function FormPage({values, disabled, errors,}) {
         Three Cheese
           <input
             type="checkbox"
+            onChange={change}
             name="threeCheese"
             checked={values.toppings.threeCheese}
           />
@@ -169,6 +207,7 @@ export default function FormPage({values, disabled, errors,}) {
         Pineapple
           <input
             type="checkbox"
+            onChange={change}
             name="pineapple"
             checked={values.toppings.pineapple}
           />
@@ -178,11 +217,14 @@ export default function FormPage({values, disabled, errors,}) {
         Extra Cheese
           <input
             type="checkbox"
-            name="pextraCheese"
+            onChange={change}
+            name="extraCheese"
             checked={values.toppings.extraCheese}
           />
         </label>
+
         
+        <button>Add to Order</button>
 
       </form>
 
